@@ -111,13 +111,24 @@
 }
 
 .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 1rem 1.5rem;
   color: #666;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
   white-space: nowrap;
+}
+
+.nav-icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.nav-text {
+  transition: opacity 0.3s ease;
 }
 
 .nav-link:hover {
@@ -135,6 +146,15 @@
 .sidebar.collapsed .nav-link {
   padding: 1rem;
   text-align: center;
+  justify-content: center;
+}
+
+.sidebar.collapsed .nav-icon {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .nav-text {
+  display: none;
 }
 
 /* Content Area */
