@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  Dashboard as DashboardIcon,
+  People as PeopleIcon,
+  Assignment as AssignmentIcon,
+  Assessment as AssessmentIcon,
+  Settings as SettingsIcon
+} from '@mui/icons-material';
 import './Home.css';
 
 const Home = () => {
@@ -54,11 +61,36 @@ const Home = () => {
         <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
           <nav className="sidebar-nav">
             <ul>
-              <li><a href="#dashboard" className="nav-link active">Dashboard</a></li>
-              <li><a href="#clients" className="nav-link">Clients</a></li>
-              <li><a href="#projects" className="nav-link">Projects</a></li>
-              <li><a href="#reports" className="nav-link">Reports</a></li>
-              <li><a href="#settings" className="nav-link">Settings</a></li>
+              <li>
+                <a href="#dashboard" className="nav-link active">
+                  <DashboardIcon className="nav-icon" />
+                  <span className="nav-text">Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="#clients" className="nav-link">
+                  <PeopleIcon className="nav-icon" />
+                  <span className="nav-text">Clients</span>
+                </a>
+              </li>
+              <li>
+                <a href="#projects" className="nav-link">
+                  <AssignmentIcon className="nav-icon" />
+                  <span className="nav-text">Projects</span>
+                </a>
+              </li>
+              <li>
+                <a href="#reports" className="nav-link">
+                  <AssessmentIcon className="nav-icon" />
+                  <span className="nav-text">Reports</span>
+                </a>
+              </li>
+              <li>
+                <a href="#settings" className="nav-link">
+                  <SettingsIcon className="nav-icon" />
+                  <span className="nav-text">Settings</span>
+                </a>
+              </li>
             </ul>
           </nav>
         </aside>
