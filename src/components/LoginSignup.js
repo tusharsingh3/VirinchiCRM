@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
 
 const LoginSignup = () => {
@@ -11,15 +12,15 @@ const LoginSignup = () => {
     rememberMe: false
   });
   const [errors, setErrors] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   // Check if user is already logged in on component mount
   useEffect(() => {
     const rememberedUser = localStorage.getItem('rememberedUser');
     if (rememberedUser) {
-      setIsLoggedIn(true);
+      navigate('/home');
     }
-  }, []);
+  }, [navigate]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -107,24 +108,13 @@ const LoginSignup = () => {
         if (formData.rememberMe) {
           localStorage.setItem('rememberedUser', JSON.stringify(user));
         }
-        setIsLoggedIn(true);
+        navigate('/home');
       } else {
         setErrors({ general: 'Invalid email or password' });
       }
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('rememberedUser');
-    setIsLoggedIn(false);
-    setFormData({
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      rememberMe: false
-    });
-  };
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
@@ -137,21 +127,6 @@ const LoginSignup = () => {
     });
     setErrors({});
   };
-
-  if (isLoggedIn) {
-    const user = JSON.parse(localStorage.getItem('rememberedUser') || '{}');
-    return (
-      <div className="dashboard">
-        <div className="dashboard-content">
-          <h1>Welcome to Virinchi Architects CRM</h1>
-          <p>Hello, {user.name || user.email}!</p>
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="login-signup-container">
